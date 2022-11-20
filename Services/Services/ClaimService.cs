@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using MyProject.Commen.DTOs;
+using MyProject.Repositories.Entities;
+using MyProject.Repositories.Interfaces;
 using MyProject.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -19,14 +21,14 @@ namespace MyProject.Services.Services
             _claimRepository = ClaimRepositpry;
             _mapper = mapper;
         }
-        public ClaimDTO Add(int id, int roleId, int permissionId, EPolicy policy)
+        public ClaimDTO Add(int id, int roleId, int permissionId, Commen.DTOs.EPolicy policy)
         {
-           return _mapper.Map<ClaimDTO>(_claimRepository.Add(id, roleId, permissionId, policy));
+           return _mapper.Map<ClaimDTO>(_claimRepository.Add(id, roleId, permissionId, (Repositories.Entities.EPolicy)policy));
         }
 
         public void Delete(int id)
         {
-            _claimRepository.Delet(id);
+            _claimRepository.Delete(id);
         }
 
         public List<ClaimDTO> GetAll()
@@ -41,7 +43,8 @@ namespace MyProject.Services.Services
 
         public ClaimDTO Update(ClaimDTO claim)
         {
-            return _mapper.Map<ClaimDTO>(_claimRepository.Update(claim));
+            return _mapper.Map<ClaimDTO>(_claimRepository.Update(_mapper.Map<Claim>(claim)));
         }
+
     }
 }

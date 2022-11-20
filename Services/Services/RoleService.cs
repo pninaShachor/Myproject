@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using MyProject.Commen.DTOs;
+using MyProject.Repositories.Entities;
+using MyProject.Repositories.Interfaces;
 using MyProject.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -26,7 +28,7 @@ namespace MyProject.Services.Services
 
         public void Delete(int id)
         {
-            _roleRepository.Delet(id);
+            _roleRepository.Delete(id);
         }
 
         public List<RoleDTO> GetAll()
@@ -41,7 +43,7 @@ namespace MyProject.Services.Services
 
         public RoleDTO Update(RoleDTO claim)
         {
-            return _mapper.Map<RoleDTO>(_roleRepository.Update(claim));
+            return _mapper.Map<RoleDTO>(_roleRepository.Update(_mapper.Map <Role> (claim)));
         }
     }
 }

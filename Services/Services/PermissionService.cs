@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using MyProject.Commen.DTOs;
+using MyProject.Repositories.Entities;
+using MyProject.Repositories.Interfaces;
 using MyProject.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -25,7 +27,7 @@ namespace MyProject.Services.Services
 
         public void Delete(int id)
         {
-            _permissionRepository.Delet(id);
+            _permissionRepository.Delete(id);
         }
 
         public List<PermissionDTO> GetAll()
@@ -40,7 +42,7 @@ namespace MyProject.Services.Services
 
         public PermissionDTO Update(PermissionDTO claim)
         {
-            return _mapper.Map<PermissionDTO>(_permissionRepository.Update(claim));
+            return _mapper.Map<PermissionDTO>(_permissionRepository.Update(_mapper.Map<Permission>(claim)));
         }
 
         

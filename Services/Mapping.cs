@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MyProject.Commen.DTOs;
+using MyProject.Repositories.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,10 @@ namespace MyProject.Services
     {
         public Mapping()
         {
-            CreateMap<Role, RoleDTO>()
-                    .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Description))
-                    .ReverseMap();
+            CreateMap<Role, RoleDTO>().ReverseMap(); 
+            CreateMap<Claim, ClaimDTO>().ReverseMap();
+            CreateMap<Permission, PermissionDTO>().ReverseMap();
+
         }
     }
 }

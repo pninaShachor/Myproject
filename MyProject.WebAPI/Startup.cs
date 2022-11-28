@@ -51,7 +51,7 @@ namespace MyProject.WebAPI
             services.AddScoped<IRoleRepository, RoleRepository>();
             services.AddScoped<IPermissionRepository, PermissionRepository>();
             services.AddScoped<IClaimRepository, ClaimRepository>();
-            services.AddSingleton<IContext, MockContext>();
+            //services.AddSingleton<IContext, MockContext>();
             services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<IPermissionService, PermissionService>();
             services.AddScoped<IClaimService, ClaimService>();

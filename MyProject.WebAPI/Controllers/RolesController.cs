@@ -27,17 +27,26 @@ namespace MyProject.WebAPI.Controllers
         }
 
         [HttpGet]
-
-        public List<Role> Get()
+        public async Task<List<Role>> Get()
         {
-            return _roleRepository.GetAll();
+            return await _roleRepository.GetAllAsync();
         }
 
         [HttpGet("{id}")]
-
-        public Role Get(int id)
+        public async Task<Role> Get(int id)
         {
-            return _roleRepository.GetById(id);
+            return await _roleRepository.GetByIdAsync(id);
+        }
+        [HttpDelete("{id}")]
+        public async Task Delete(int id)
+        {
+            await _roleRepository.DeleteAsync(id);
+        }
+        [HttpPut]
+
+        public async Task Put([FromBody] Role role)
+        {
+            await _roleRepository.UpdateAsync(role);
         }
     }
 }

@@ -25,17 +25,26 @@ namespace MyProject.WebAPI.Controllers
         }
 
         [HttpGet]
-
-        public List<Claim> Get()
+        public async Task<List<Claim>> Get()
         {
-            return _claimRepository.GetAll();
+            return await _claimRepository.GetAllAsync();
         }
 
         [HttpGet("{id}")]
-
-        public Claim Get(int id)
+        public async Task<Claim> Get(int id)
         {
-            return _claimRepository.GetById(id);
+            return await _claimRepository.GetByIdAsync(id);
+        }
+        [HttpDelete("{id}")]
+        public async Task Delete(int id)
+        {
+            await _claimRepository.DeleteAsync(id);
+        }
+        [HttpPut]
+
+        public async Task Put([FromBody] Claim role)
+        {
+            await _claimRepository.UpdateAsync(role);
         }
     }
 }
